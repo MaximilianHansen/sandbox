@@ -1,72 +1,77 @@
-string = 'one'
-
-string2 = 'firvfoutheree'
-
-numbers = ["one" , "two" , "three", "four", "five", "six", "seven", "eight", "nine"]
 
 
-// function hellyeah (string) {
-//     let subArr = [];
-//     let str = string;
+let anagram = 'fooneurninethreenine'
 
-//     for(number of numbers) {
-//         checkNumber(number, str, 0, subArr);
-//         str = str;  
-//     }
-
-//     console.log(subArr);
-// }
+let numbers = ["four","nine" ,"one" ,"two" , "three", "five", "six", "seven", "eight", "nine"]
 
 
-function checkNumber(number, str, n, subArr1) { 
-    console.log('ran', number)
-    if(n === number.length){return true & subArr1.push(number)}
+function checkNumber(number, string, n, subArr1, stringArr) { 
+    if(n == number.length){ return removeString(number, string, stringArr) & subArr1.push(number)}
     
-    if(str.includes(number[n])) {
-            checkNumber(number, str, n+1, subArr1)
+    if(string.includes(number[n])) {
+            checkNumber(number, string, n+1, subArr1, stringArr)
             }
-    else {return}         
+    else { return }         
 }
 
-function removeString(num, str) {
+function removeString(num, string, stringArr) {
     for(letter of num){
-    let y = (str.indexOf(letter) + 1);
-    console.log(letter, y)
-    let newStr = str.substring(0,y - 1) + str.substring(y, str.length);
-    str = newStr;
-    console.log(num, str);
+    let y = (string.indexOf(letter) + 1);
+    string = string.substring(0,y - 1) + string.substring(y, string.length);
     }
-    return str
+  return stringArr.push(string);
 }
 
-//removeString(numbers[2], string2);
+function cycleNumbers(numbers, string, z, subArr1, stringArr) {
+    if(stringArr[(stringArr.length-1)] == ''){ return } 
+    if(z > 8 ){z = 0}
+    checkNumber(numbers[z], stringArr[(stringArr.length-1)], 0, subArr1, stringArr);
+    cycleNumbers(numbers, stringArr[(stringArr.length-1)], z+1, subArr1, stringArr);
+}
 
-            
-//hellyeah(string2);
-
-
-
-function program(numbers, string, n) {
+function convertToInt (array) {
+let subArr3 = [];
+    for (word of array){
+        if(word == "one"){
+            subArr3.push(1);
+        }
+        if(word == "two"){
+            subArr3.push(2);
+        }
+        if(word == "three"){
+            subArr3.push(3);
+        }
+        if(word == "four"){
+            subArr3.push(4);
+        }
+        if(word == "five"){
+            subArr3.push(5);
+        }
+        if(word == "six"){
+            subArr3.push(6);
+        }
+        if(word == "seven"){
+            subArr3.push(7);
+        }
+        if(word == "eight"){
+            subArr3.push(8);
+        }
+        if(word == "nine"){
+            subArr3.push(9);
+        }
+    }
+    return subArr3.sort()
+}
+function program(numbers, str, n) {
 let subArr1 = [];
-str = string;
+let stringArr = [];
+stringArr[0] = str;
 
-function cycleNumbers(numbers, str, z, subArr1) {
-    if(z == 8){ return } 
-    if(checkNumber(numbers[z], str, 0, subArr1) == true){
-    console.log("true");
-    cycleNumbers(numbers, removeString(numbers[z], str), z+1, subArr1);
-    }
-    else {cycleNumbers(numbers, str, z+1, subArr1)}
+cycleNumbers(numbers, stringArr[(stringArr.length-1)], n, subArr1, stringArr);
+console.log(convertToInt(subArr1), "program output");
+
     }
 
-
-cycleNumbers(numbers, str, n, subArr1);
-console.log(subArr1);
-}
-
-program(numbers, string2, 0)
+    program(numbers, anagram, 0)
 
 
-
-
-//checkNumber(numbers[z], str, 0, subArr1 );
